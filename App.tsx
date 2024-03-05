@@ -76,7 +76,7 @@ const App = () => {
       </View>
       <View>
         <Text style={style.titleFetch} > FETCHING DATA FROM API </Text>
-        <Image style={style.imageFetch} source={{ uri: user.avatar }} />
+        {user.avatar ? (<Image style={style.imageFetch} source={{ uri: user.avatar }} />) : null}
         <Text > {user.first_name} </Text>
         <Text > {user.email} </Text>
         <Button title="GET DATA" onPress={() => getProfile((data: any) => setUser(data.data))} />
