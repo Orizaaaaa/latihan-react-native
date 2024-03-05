@@ -62,9 +62,9 @@ const App = () => {
 
         <View>
           <Text style={style.resultInput} > nama kamu adalah : {input.username}</Text>
-          <Text style={style.resultInput} > passwors kamu adalah : {input.password}</Text>
+          <Text style={style.resultInput} > password kamu adalah : {input.password}</Text>
           <TextInput value={input.username} onChangeText={(text) => handleChange('username', text)} style={style.textInput} placeholder="Username" />
-          <TextInput value={input.password} onChangeText={(text) => handleChange('password', text)} style={style.textInput} placeholder="Umur" />
+          <TextInput value={input.password} onChangeText={(text) => handleChange('password', text)} style={style.textInput} placeholder="Password" />
         </View>
 
       </View>
