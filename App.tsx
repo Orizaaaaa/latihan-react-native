@@ -1,6 +1,7 @@
 import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import ProfileUser from './components/elements';
+import { getProfile } from './service/service';
 
 declare function alert(message?: any): void;
 const sayHai = () => {
@@ -10,8 +11,6 @@ const sayHai = () => {
 const buttonList = (item: string) => {
   alert(item);
 }
-
-
 
 const App = () => {
   const [list, setList] = React.useState([
@@ -28,6 +27,14 @@ const App = () => {
   const handleChange = (name: string, text: string) => {
     setInput({ ...input, [name]: text });
   };
+
+  const [user, setUser] = React.useState({
+    first_name: '',
+    avatar: '',
+    email: ''
+  });
+
+  console.log(user);
 
   return (
     <ScrollView>
@@ -52,14 +59,13 @@ const App = () => {
         </View>
 
         <View >
-          {list.map((item) => (
-            <TouchableOpacity onPress={() => buttonList(item.name)} >
+          {list.map((item, index) => (
+            <TouchableOpacity key={index} onPress={() => buttonList(item.name)} >
               <Text style={style.list} key={item.id}>{item.name}</Text>
             </TouchableOpacity>
           ))}
         </View>
         <ProfileUser name="Abdul" age={20} email="oryzasativa@gmail.com" />
-
         <View>
           <Text style={style.resultInput} > nama kamu adalah : {input.username}</Text>
           <Text style={style.resultInput} > password kamu adalah : {input.password}</Text>
@@ -68,6 +74,14 @@ const App = () => {
         </View>
 
       </View>
+      <View>
+        <Text style={style.titleFetch} > FETCHING DATA FROM API </Text>
+        <Image style={style.imageFetch} source={{ uri: user.avatar }} />
+        <Text > {user.first_name} </Text>
+        <Text > {user.email} </Text>
+        <Button title="GET DATA" onPress={() => getProfile((data: any) => setUser(data.data))} />
+      </View>
+
     </ScrollView>
   );
 };
@@ -144,5 +158,18 @@ const style = StyleSheet.create({
   resultInput: {
     color: 'black',
     marginTop: 10,
+  },
+  titleFetch: {
+    color: 'black',
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  imageFetch: {
+    width: 70,
+    height: 70,
+    alignSelf: 'center',
+    marginTop: 10,
+    borderRadius: 100
   }
 })
