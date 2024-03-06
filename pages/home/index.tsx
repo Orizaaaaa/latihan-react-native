@@ -138,7 +138,7 @@ const Home = ({ navigation }: any) => {
             <View>
                 <Text style={style.titleFitur} > MODAL</Text>
                 <Button title='Open Modal' onPress={() => setModalVisible(true)} />
-                <Modal visible={modalVisible} >
+                <Modal visible={modalVisible} animationType='fade' >
                     <View style={style.modal}>
                         <Text style={{ color: 'white', marginBottom: 10 }} >Modal</Text>
                         <Button title='Tutup Modal' onPress={() => setModalVisible(false)} />
