@@ -1,7 +1,7 @@
 
 import {
     View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput,
-    ActivityIndicator, Switch, Modal, Linking, Dimensions
+    ActivityIndicator, Switch, Modal, Linking, Dimensions, ToastAndroid, StatusBar, RefreshControl
 } from 'react-native';
 import React, { useEffect } from 'react';
 import ProfileUser from '../../components/elements';
@@ -63,8 +63,21 @@ const Home = ({ navigation }: any) => {
     const width = Dimensions.get('window').width;
     console.log(width, height);
 
+
+    // toast
+    const toast1 = () => {
+        ToastAndroid.show('Toast from React Native', ToastAndroid.LONG);
+    }
+    const toast2 = () => {
+        ToastAndroid.showWithGravity("Saya adalah toast ke 2", ToastAndroid.SHORT, ToastAndroid.TOP);
+    }
+
+    const toast3 = () => {
+        ToastAndroid.showWithGravityAndOffset("Saya adalah toast ke 3", ToastAndroid.SHORT, ToastAndroid.TOP, 200, 50);
+    }
     return (
-        <ScrollView>
+        <ScrollView refreshControl={<RefreshControl refreshing={false} />} >
+            <StatusBar backgroundColor="#872341" barStyle="light-content" />
             <View>
                 <Text style={style.tulisan}>
                     <Text style={style.italic}> Selamat datang</Text> di
@@ -122,6 +135,10 @@ const Home = ({ navigation }: any) => {
                 <View style={style.navigation} >
                     <Button title='Pergi ke Webview' onPress={() => navigation.navigate('Webview')} />
                 </View>
+
+                <View style={style.navigation} >
+                    <Button title='Pergi ke BackgroundPage' onPress={() => navigation.navigate('BackgroundPage')} />
+                </View>
             </View>
 
             <View>
@@ -158,6 +175,13 @@ const Home = ({ navigation }: any) => {
             <View>
                 <Text style={style.titleFitur} > LINKING</Text>
                 <Button title='Open Linking' onPress={() => Linking.openURL('sms:081234567890?body=Halo')} />
+            </View>
+
+            <View>
+                <Text style={style.titleFitur} >TOAST</Text>
+                <Button title='Show Toast 1' onPress={toast1} />
+                <Button title='Show Toast 2' onPress={toast2} />
+                <Button title='Show Toast 3' onPress={toast3} />
             </View>
 
         </ScrollView>
