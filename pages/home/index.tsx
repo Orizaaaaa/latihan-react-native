@@ -108,7 +108,7 @@ const Home = ({ navigation }: any) => {
             <View>
                 <Text style={style.titleFitur} > lOADING</Text>
                 {loading ? <ActivityIndicator size="large" color="red" /> : null}
-                <Button title="LOADING" onPress={() => setLoading(!loading)} />
+                <Button title={loading ? 'hentikan loading' : 'aktifkan loading'} onPress={() => setLoading(!loading)} />
             </View>
 
         </ScrollView>
