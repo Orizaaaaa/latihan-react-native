@@ -91,7 +91,7 @@ const Home = ({ navigation }: any) => {
             </View>
 
             <View style={style.navigation} >
-                <Button title='Pergi ke Webview' />
+                <Button title='Pergi ke Webview' onPress={() => navigation.navigate('Webview')} />
             </View>
         </ScrollView>
     );

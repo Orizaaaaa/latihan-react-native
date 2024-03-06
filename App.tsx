@@ -1,11 +1,9 @@
-import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native';
-import React, { useEffect } from 'react';
-import ProfileUser from './components/elements';
-import { getProfile } from './service/service';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './pages/home';
 import About from './pages/about';
+import Webview from './pages/webview';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +13,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="About" component={About} />
+        <Stack.Screen name="Webview" component={Webview} />
       </Stack.Navigator>
     </NavigationContainer>
   );
