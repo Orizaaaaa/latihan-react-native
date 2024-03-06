@@ -1,5 +1,5 @@
 
-import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput, ActivityIndicator } from 'react-native';
 import React, { useEffect } from 'react';
 import ProfileUser from '../../components/elements';
 import { getProfile } from '../../service/service';
@@ -15,12 +15,15 @@ const buttonList = (item: string) => {
 }
 
 const Home = ({ navigation }: any) => {
+    // list data button
     const [list, setList] = React.useState([
         { id: 1, name: 'Deadpool' },
         { id: 2, name: 'Captain America' },
         { id: 3, name: 'Spiderman' }
     ]);
 
+
+    // input user
     const [input, setInput] = React.useState({
         username: '',
         password: ''
@@ -30,11 +33,15 @@ const Home = ({ navigation }: any) => {
         setInput({ ...input, [name]: text });
     };
 
+    // data from api
     const [user, setUser] = React.useState({
         first_name: '',
         avatar: '',
         email: ''
     });
+
+    // indicator loading 
+    const [loading, setLoading] = React.useState(false);
 
 
     return (
@@ -75,24 +82,35 @@ const Home = ({ navigation }: any) => {
                 </View>
 
             </View>
+
             <View>
-                <Text style={style.titleFetch} > FETCHING DATA FROM API </Text>
+                <Text style={style.titleFitur} > FETCHING DATA FROM API </Text>
                 {user.avatar ? (<Image style={style.imageFetch} source={{ uri: user.avatar }} />) : null}
                 <Text > {user.first_name} </Text>
                 <Text > {user.email} </Text>
                 <Button title="GET DATA" onPress={() => getProfile((data: any) => setUser(data.data))} />
             </View>
 
-            <View style={style.navigation} >
-                <Button title='Pergi ke About' onPress={() => navigation.navigate('About', {
-                    name: 'Abdul',
-                    age: 20
-                })} />
+            <View>
+                <Text style={style.titleFitur} > NAVIGATION</Text>
+                <View style={style.navigation} >
+                    <Button title='Pergi ke About' onPress={() => navigation.navigate('About', {
+                        name: 'Abdul',
+                        age: 20
+                    })} />
+                </View>
+
+                <View style={style.navigation} >
+                    <Button title='Pergi ke Webview' onPress={() => navigation.navigate('Webview')} />
+                </View>
             </View>
 
-            <View style={style.navigation} >
-                <Button title='Pergi ke Webview' onPress={() => navigation.navigate('Webview')} />
+            <View>
+                <Text style={style.titleFitur} > lOADING</Text>
+                {loading ? <ActivityIndicator size="large" color="red" /> : null}
+                <Button title="LOADING" onPress={() => setLoading(!loading)} />
             </View>
+
         </ScrollView>
     );
 };
@@ -169,11 +187,12 @@ const style = StyleSheet.create({
         color: 'black',
         marginTop: 10,
     },
-    titleFetch: {
+    titleFitur: {
         color: 'black',
         textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold',
+        marginTop: 20
     },
     imageFetch: {
         width: 70,
