@@ -1,5 +1,5 @@
 
-import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput, ActivityIndicator } from 'react-native';
+import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput, ActivityIndicator, Switch } from 'react-native';
 import React, { useEffect } from 'react';
 import ProfileUser from '../../components/elements';
 import { getProfile } from '../../service/service';
@@ -47,9 +47,9 @@ const Home = ({ navigation }: any) => {
 
     // picker
     const [picker, setPicker] = React.useState()
-    const clickPicker = (label: string) => {
 
-    }
+    // switch
+    const [switchOn, setSwitchOn] = React.useState(false)
 
     return (
         <ScrollView>
@@ -125,6 +125,11 @@ const Home = ({ navigation }: any) => {
                     <Picker.Item label='Selasa' value={'selasa'} />
                     <Picker.Item label='Rabu' value={'rabu'} />
                 </Picker>
+            </View>
+
+            <View>
+                <Text style={style.titleFitur} > SWITCH</Text>
+                <Switch style={{ alignSelf: 'center', }} onValueChange={() => setSwitchOn(!switchOn)} value={switchOn} />
             </View>
 
         </ScrollView>
