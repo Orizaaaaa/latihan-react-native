@@ -14,7 +14,7 @@ const buttonList = (item: string) => {
     alert(item);
 }
 
-const Home = () => {
+const Home = ({ navigation }: any) => {
     const [list, setList] = React.useState([
         { id: 1, name: 'Deadpool' },
         { id: 2, name: 'Captain America' },
@@ -84,6 +84,9 @@ const Home = () => {
                 <Button title="GET DATA" onPress={() => getProfile((data: any) => setUser(data.data))} />
             </View>
 
+            <View style={style.navigation} >
+                <Button title='Pergi ke About' onPress={() => navigation.navigate('About')} />
+            </View>
         </ScrollView>
     );
 };
@@ -172,6 +175,9 @@ const style = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10,
         borderRadius: 100
+    },
+    navigation: {
+        marginTop: 10,
     }
 })
 
