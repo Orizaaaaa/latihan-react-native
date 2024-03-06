@@ -1,5 +1,5 @@
 
-import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput, ActivityIndicator, Switch } from 'react-native';
+import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput, ActivityIndicator, Switch, Modal } from 'react-native';
 import React, { useEffect } from 'react';
 import ProfileUser from '../../components/elements';
 import { getProfile } from '../../service/service';
@@ -51,6 +51,9 @@ const Home = ({ navigation }: any) => {
     // switch
     const [switchOn, setSwitchOn] = React.useState(false)
 
+
+    // modal
+    const [modalVisible, setModalVisible] = React.useState(false)
     return (
         <ScrollView>
             <View>
@@ -132,6 +135,17 @@ const Home = ({ navigation }: any) => {
                 <Switch style={{ alignSelf: 'center', }} onValueChange={() => setSwitchOn(!switchOn)} value={switchOn} />
             </View>
 
+            <View>
+                <Text style={style.titleFitur} > MODAL</Text>
+                <Button title='Open Modal' onPress={() => setModalVisible(true)} />
+                <Modal visible={modalVisible} >
+                    <View style={style.modal}>
+                        <Text style={{ color: 'white', marginBottom: 10 }} >Modal</Text>
+                        <Button title='Tutup Modal' onPress={() => setModalVisible(false)} />
+                    </View>
+                </Modal>
+            </View>
+
         </ScrollView>
     );
 };
@@ -139,6 +153,16 @@ const Home = ({ navigation }: any) => {
 
 const style = StyleSheet.create({
     // pengenalan style
+    modal: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'black',
+        height: 200,
+        width: '80%',
+        borderRadius: 10,
+        marginTop: 200,
+        marginLeft: 40,
+    },
     tulisan: {
         fontSize: 20
     },
