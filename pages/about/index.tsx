@@ -6,8 +6,8 @@ export default function About({ route }: any) {
         <View style={style.layout} >
             <Text style={style.title} >THIS IS ABOUT PAGE</Text>
             <Text style={style.text} >ini adalah params yang di kirim dari home : </Text>
-            <Text style={style.text} >{route.params.name}</Text>
-            <Text style={style.text} >{route.params.age}</Text>
+            <Text style={style.text} > nama : {route.params.name}</Text>
+            <Text style={style.text} > umur {route.params.age}</Text>
         </View>
     )
 }
