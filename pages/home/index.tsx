@@ -1,5 +1,8 @@
 
-import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput, ActivityIndicator, Switch, Modal } from 'react-native';
+import {
+    View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput,
+    ActivityIndicator, Switch, Modal, Linking, Dimensions
+} from 'react-native';
 import React, { useEffect } from 'react';
 import ProfileUser from '../../components/elements';
 import { getProfile } from '../../service/service';
@@ -54,6 +57,12 @@ const Home = ({ navigation }: any) => {
 
     // modal
     const [modalVisible, setModalVisible] = React.useState(false)
+
+    // dimension 
+    const height = Dimensions.get('window').height;
+    const width = Dimensions.get('window').width;
+    console.log(width, height);
+
     return (
         <ScrollView>
             <View>
@@ -144,6 +153,11 @@ const Home = ({ navigation }: any) => {
                         <Button title='Tutup Modal' onPress={() => setModalVisible(false)} />
                     </View>
                 </Modal>
+            </View>
+
+            <View>
+                <Text style={style.titleFitur} > LINKING</Text>
+                <Button title='Open Linking' onPress={() => Linking.openURL('sms:081234567890 ? body=Halo')} />
             </View>
 
         </ScrollView>
