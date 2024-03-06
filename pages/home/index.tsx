@@ -1,8 +1,8 @@
 
 import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native';
 import React, { useEffect } from 'react';
-import ProfileUser from '../components/elements';
-import { getProfile } from '../service/service';
+import ProfileUser from '../../components/elements';
+import { getProfile } from '../../service/service';
 
 
 declare function alert(message?: any): void;
@@ -46,7 +46,7 @@ const Home = () => {
                     aplikasi pertama saya
                 </Text>
                 <Image
-                    source={require('../assets/deadpool.png')}
+                    source={require('../../assets/deadpool.png')}
                     style={style.image}
                 />
                 <Button title="Punch Me" onPress={sayHai} />
