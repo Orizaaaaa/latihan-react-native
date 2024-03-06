@@ -3,6 +3,7 @@ import { View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, Te
 import React, { useEffect } from 'react';
 import ProfileUser from '../../components/elements';
 import { getProfile } from '../../service/service';
+import { Picker } from '@react-native-picker/picker';
 
 
 declare function alert(message?: any): void;
@@ -43,6 +44,12 @@ const Home = ({ navigation }: any) => {
     // indicator loading 
     const [loading, setLoading] = React.useState(false);
 
+
+    // picker
+    const [picker, setPicker] = React.useState()
+    const clickPicker = (label: string) => {
+
+    }
 
     return (
         <ScrollView>
@@ -109,6 +116,15 @@ const Home = ({ navigation }: any) => {
                 <Text style={style.titleFitur} > lOADING</Text>
                 {loading ? <ActivityIndicator size="large" color="red" /> : null}
                 <Button title={loading ? 'hentikan loading' : 'aktifkan loading'} onPress={() => setLoading(!loading)} />
+            </View>
+
+            <View>
+                <Text style={style.titleFitur} > PICKER</Text>
+                <Picker selectedValue={picker} onValueChange={(item,) => setPicker(item)}>
+                    <Picker.Item label='Senin' value={'senin'} />
+                    <Picker.Item label='Selasa' value={'selasa'} />
+                    <Picker.Item label='Rabu' value={'rabu'} />
+                </Picker>
             </View>
 
         </ScrollView>
