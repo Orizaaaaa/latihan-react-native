@@ -36,7 +36,6 @@ const Home = ({ navigation }: any) => {
         email: ''
     });
 
-    console.log(user);
 
     return (
         <ScrollView>
@@ -85,7 +84,10 @@ const Home = ({ navigation }: any) => {
             </View>
 
             <View style={style.navigation} >
-                <Button title='Pergi ke About' onPress={() => navigation.navigate('About')} />
+                <Button title='Pergi ke About' onPress={() => navigation.navigate('About', {
+                    name: 'Abdul',
+                    age: 20
+                })} />
             </View>
         </ScrollView>
     );
