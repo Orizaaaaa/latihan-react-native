@@ -157,7 +157,7 @@ const Home = ({ navigation }: any) => {
 
             <View>
                 <Text style={style.titleFitur} > LINKING</Text>
-                <Button title='Open Linking' onPress={() => Linking.openURL('sms:081234567890 ? body=Halo')} />
+                <Button title='Open Linking' onPress={() => Linking.openURL('sms:081234567890?body=Halo')} />
             </View>
 
         </ScrollView>
