@@ -90,8 +90,8 @@ const Home = ({ navigation }: any) => {
                 })} />
             </View>
 
-            <View>
-                <Button title='Webview' />
+            <View style={style.navigation} >
+                <Button title='Pergi ke Webview' />
             </View>
         </ScrollView>
     );
