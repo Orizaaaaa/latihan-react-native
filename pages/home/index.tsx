@@ -89,6 +89,10 @@ const Home = ({ navigation }: any) => {
                     age: 20
                 })} />
             </View>
+
+            <View>
+                <Button title='Webview' />
+            </View>
         </ScrollView>
     );
 };
