@@ -1,7 +1,7 @@
 
 import {
     View, Text, Image, Button, TouchableOpacity, StyleSheet, ScrollView, TextInput,
-    ActivityIndicator, Switch, Modal, Linking, Dimensions, ToastAndroid, StatusBar, RefreshControl
+    ActivityIndicator, Switch, Modal, Linking, Dimensions, ToastAndroid, StatusBar, RefreshControl, BackHandler, Alert
 } from 'react-native';
 import React, { useEffect } from 'react';
 import ProfileUser from '../../components/elements';
@@ -75,6 +75,26 @@ const Home = ({ navigation }: any) => {
     const toast3 = () => {
         ToastAndroid.showWithGravityAndOffset("Saya adalah toast ke 3", ToastAndroid.SHORT, ToastAndroid.TOP, 200, 50);
     }
+
+    // back handler 
+    useEffect(() => {
+        const actionButtonBack = () => {
+            Alert.alert(
+                "Perhatian", 'Yakin akan kembali', [
+                { text: 'Tidak', onPress: () => null, style: 'cancel' },
+                { text: 'Ya', onPress: () => BackHandler.exitApp },
+
+            ]
+            )
+            return true
+        }
+        const handlerBack = BackHandler.addEventListener(
+            'hardwareBackPress', actionButtonBack
+        )
+        return () => handlerBack.remove()
+    });
+
+
     return (
         <ScrollView refreshControl={<RefreshControl refreshing={false} />} >
             <StatusBar backgroundColor="#872341" barStyle="light-content" />
